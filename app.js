@@ -306,6 +306,94 @@ Draft Player
 
 }
 
+function renderStackRecommendations(){
+
+
+const area =
+document.getElementById("stackRecommendations");
+
+
+if(!area) return;
+
+
+if(roster.length === 0){
+
+area.innerHTML =
+"Draft a player to generate stack targets.";
+
+return;
+
+}
+
+
+let targets = players
+
+.filter(player =>
+
+!roster.some(
+
+drafted =>
+
+drafted.name === player.name
+
+)
+
+)
+
+
+.filter(player =>
+
+roster.some(existing =>
+
+existing.qbStack === player.name ||
+
+player.qbStack === existing.name
+
+)
+
+)
+
+
+.slice(0,5);
+
+
+
+if(targets.length === 0){
+
+area.innerHTML =
+"No strong stack targets found.";
+
+return;
+
+}
+
+
+area.innerHTML = targets.map(player =>
+
+`
+
+<div class="player">
+
+<b>${player.name}</b>
+
+<br>
+
+${player.position}
+|
+${player.team}
+
+<br>
+
+Stack Bonus Candidate
+
+</div>
+
+`
+
+).join("");
+
+}
+
 
 // Refresh screen
 
