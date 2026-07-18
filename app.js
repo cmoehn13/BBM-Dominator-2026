@@ -63,6 +63,26 @@ render();
 }
 
 
+function removePlayer(name) {
+
+
+roster = roster.filter(
+
+player =>
+
+player.name !== name
+
+);
+
+
+saveRoster();
+
+
+render();
+
+
+}
+
 
 // Save roster locally
 
@@ -128,13 +148,10 @@ roster.map(player =>
 <br>
 
 <span class="position">
-
 ${player.position}
-
 </span>
 
 -
-
 ${player.team}
 
 <br>
@@ -142,9 +159,19 @@ ${player.team}
 <div class="small">
 
 Stack:
-${player.qbStack}
+${player.qbStack || "None"}
 
 </div>
+
+
+<br>
+
+<button onclick="removePlayer('${player.name}')">
+
+Remove
+
+</button>
+
 
 </div>
 
