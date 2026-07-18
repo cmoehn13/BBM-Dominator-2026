@@ -1,6 +1,5 @@
 // BBM Dominator Draft Logic Engine v0.2C
 
-
 function calculateRosterNeeds(roster){
 
 
