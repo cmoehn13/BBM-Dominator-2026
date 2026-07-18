@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Ja'Marr Chase",
+    "team": "CIN",
+    "position": "WR",
+    "adp": 1.8,
+    "bbmScore": 99,
+    "tier": "S",
+    "stack": "Joe Burrow"
+  },
+  {
+    "name": "Justin Jefferson",
+    "team": "MIN",
+    "position": "WR",
+    "adp": 2.5,
+    "bbmScore": 98,
+    "tier": "S",
+    "stack": "J.J. McCarthy"
+  },
+  {
+    "name": "Bijan Robinson",
+    "team": "ATL",
+    "position": "RB",
+    "adp": 4,
+    "bbmScore": 97,
+    "tier": "S",
+    "stack": "Drake London"
+  },
+  {
+    "name": "Jahmyr Gibbs",
+    "team": "DET",
+    "position": "RB",
+    "adp": 5,
+    "bbmScore": 97,
+    "tier": "S",
+    "stack": "Jared Goff"
+  },
+  {
+    "name": "Joe Burrow",
+    "team": "CIN",
+    "position": "QB",
+    "adp": 30,
+    "bbmScore": 96,
+    "tier": "A",
+    "stack": "Ja'Marr Chase"
+  },
+  {
+    "name": "Brian Thomas Jr.",
+    "team": "JAX",
+    "position": "WR",
+    "adp": 18,
+    "bbmScore": 96,
+    "tier": "A",
+    "stack": "Trevor Lawrence"
+  },
+  {
+    "name": "Trey McBride",
+    "team": "ARI",
+    "position": "TE",
+    "adp": 28,
+    "bbmScore": 94,
+    "tier": "A",
+    "stack": "Kyler Murray"
+  }
+]
