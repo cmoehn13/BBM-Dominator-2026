@@ -341,15 +341,74 @@ drafted.name === player.name
 )
 
 
+.map(player => {
+
+
+let bonus = 0;
+
+
+roster.forEach(existing => {
+
+
+if(
+player.qbStack &&
+existing.qbStack === player.qbStack
+){
+
+bonus += 5;
+
+}
+
+
+if(
+player.qbStack &&
+existing.name === player.qbStack
+){
+
+bonus += 10;
+
+}
+
+
+if(
+existing.qbStack &&
+existing.qbStack === player.name
+){
+
+bonus += 10;
+
+}
+
+
+});
+
+
+return {
+
+...player,
+
+stackBonus: bonus
+
+};
+
+
+})
+
+
 .filter(player =>
 
-roster.some(existing =>
-
-existing.qbStack === player.name ||
-
-player.qbStack === existing.name
+player.stackBonus > 0
 
 )
+
+
+.sort(
+
+(a,b)=>
+
+b.stackBonus -
+
+a.stackBonus
 
 )
 
@@ -361,14 +420,16 @@ player.qbStack === existing.name
 if(targets.length === 0){
 
 area.innerHTML =
-"No strong stack targets found.";
+"No stack targets available.";
 
 return;
 
 }
 
 
+
 area.innerHTML = targets.map(player =>
+
 
 `
 
@@ -382,15 +443,20 @@ ${player.position}
 |
 ${player.team}
 
+
 <br>
 
-Stack Bonus Candidate
+Stack Bonus:
++${player.stackBonus}
+
 
 </div>
+
 
 `
 
 ).join("");
+
 
 }
 
