@@ -166,7 +166,7 @@ ${player.qbStack || "None"}
 
 <br>
 
-<button onclick="removePlayer('${player.name}')">
+<button onclick="window.removePlayer('${player.name}')">
 
 Remove
 
@@ -290,7 +290,7 @@ ${player.qbStack || "None"}
 </div>
 
 
-<button onclick="draftPlayer('${player.name}')">
+<button onclick="window.draftPlayer('${player.name}')">
 
 Draft Player
 
