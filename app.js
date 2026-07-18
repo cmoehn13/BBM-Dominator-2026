@@ -189,7 +189,7 @@ b.bbmScore - a.bbmScore
 
 )
 
-.slice(0,5);
+.slice(0,25);
 
 
 
