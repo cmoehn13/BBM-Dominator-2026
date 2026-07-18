@@ -195,45 +195,60 @@ document.getElementById("recommendations");
 if(!area) return;
 
 
-const available =
-
-players
+const available = players
 
 .filter(player =>
 
 !roster.some(
-r =>
-r.name === player.name
+
+drafted =>
+
+drafted.name === player.name
+
 )
 
 )
+
+.map(player => {
+
+
+return {
+
+...player,
+
+dominatorScore:
+
+calculateBBMDominatorScore(
+
+player,
+
+roster
+
+)
+
+};
+
+
+})
+
 
 .sort(
 
 (a,b)=>
 
-calculateBBMDominatorScore(
-b,
-roster
-)
+b.dominatorScore -
 
--
-
-calculateBBMDominatorScore(
-a,
-roster
-)
+a.dominatorScore
 
 )
 
-.slice(0,25);
+
+.slice(0,10);
 
 
 
-area.innerHTML =
+area.innerHTML = available.map(player =>
 
-
-available.map(player =>
 
 `
 
@@ -247,26 +262,32 @@ ${player.position}
 |
 ${player.team}
 
+
 <br>
+
 
 <span class="score">
 
-BBM Score:
-${player.bbmScore}
+Dominator Score:
+${player.dominatorScore}
 
 </span>
 
 
 <br>
 
+
 <div class="small">
 
-Stack:
-${player.qbStack}
-
-</div>
+BBM:
+${player.bbmScore}
 
 <br>
+
+Stack:
+${player.qbStack || "None"}
+
+</div>
 
 
 <button onclick="draftPlayer('${player.name}')">
@@ -278,12 +299,12 @@ Draft Player
 
 </div>
 
+
 `
 
 ).join("");
 
 }
-
 
 
 // Refresh screen
