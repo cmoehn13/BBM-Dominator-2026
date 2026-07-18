@@ -1,4 +1,4 @@
-const CACHE_NAME = "bbm-dominator-v1.1";
+const CACHE_NAME = "bbm-dominator-v1.2";
 
 const FILES_TO_CACHE = [
   "./",
@@ -7,7 +7,8 @@ const FILES_TO_CACHE = [
   "app.js",
   "players.json",
   "manifest.json",
-  "scoring.js"
+  "scoring.js",
+  "draftlogic.js"
 ];
 
 
