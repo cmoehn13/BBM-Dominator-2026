@@ -426,9 +426,7 @@ return;
 
 }
 
-
 area.innerHTML = targets.map(player =>
-
 
 `
 
@@ -442,24 +440,18 @@ ${player.position}
 |
 ${player.team}
 
-
 <br>
 
 Stack Bonus:
 +${player.stackBonus}
 
-
 <br><br>
 
-<button onclick="draftPlayer('${player.name}')">
-
+<button onclick="window.draftPlayer('${player.name}')">
 Draft Player
-
 </button>
 
-
 </div>
-
 
 `
 
