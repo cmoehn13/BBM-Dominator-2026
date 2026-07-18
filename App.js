@@ -5,15 +5,34 @@ let roster = [];
 
 // Load player database
 
-fetch("players.json")
+fetch("./players.json")
 
-.then(response => response.json())
+.then(response => {
+
+if (!response.ok) {
+
+throw new Error("Could not load players.json");
+
+}
+
+return response.json();
+
+})
 
 .then(data => {
 
 players = data;
 
 renderRecommendations();
+
+})
+
+.catch(error => {
+
+console.error(error);
+
+document.getElementById("recommendations").innerHTML =
+"Unable to load player database.";
 
 });
 
