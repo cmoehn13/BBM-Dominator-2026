@@ -482,6 +482,8 @@ renderStackRecommendations();
 }
 
 
+window.draftPlayer = draftPlayer;
+window.removePlayer = removePlayer;
 
 // Start app
 
@@ -489,5 +491,3 @@ loadRoster();
 
 render();
 
-window.draftPlayer = draftPlayer;
-window.removePlayer = removePlayer;
