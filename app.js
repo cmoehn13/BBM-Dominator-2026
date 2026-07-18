@@ -488,3 +488,6 @@ renderStackRecommendations();
 loadRoster();
 
 render();
+
+window.draftPlayer = draftPlayer;
+window.removePlayer = removePlayer;
