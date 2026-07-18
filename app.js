@@ -142,7 +142,7 @@ ${player.team}
 <div class="small">
 
 Stack:
-${player.stack}
+${player.qbStack}
 
 </div>
 
@@ -225,7 +225,7 @@ ${player.bbmScore}
 <div class="small">
 
 Stack:
-${player.stack}
+${player.qbStack}
 
 </div>
 
