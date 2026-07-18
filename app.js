@@ -403,6 +403,8 @@ renderRoster();
 
 renderRecommendations();
 
+renderStackRecommendations();
+
 }
 
 
