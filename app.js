@@ -185,7 +185,17 @@ r.name === player.name
 
 (a,b)=>
 
-b.bbmScore - a.bbmScore
+calculateBBMDominatorScore(
+b,
+roster
+)
+
+-
+
+calculateBBMDominatorScore(
+a,
+roster
+)
 
 )
 
