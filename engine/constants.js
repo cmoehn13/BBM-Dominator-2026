@@ -28,6 +28,18 @@ export const ROSTER_TARGETS = {
     }
 };
 
+export const POSITION_PRIORITY = {
+
+    QB: 1,
+
+    RB: 2,
+
+    WR: 3,
+
+    TE: 4
+
+};
+
 // Draft phases
 export const DRAFT_PHASES = {
     EARLY: {
