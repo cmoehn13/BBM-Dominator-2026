@@ -103,6 +103,26 @@ function detectStrategy(roster) {
     }
 }
 
+function calculateRosterNeed(roster) {
+
+    const counts = getRosterCounts(roster);
+
+    const needs = {};
+
+    Object.keys(TARGETS).forEach(position => {
+
+        const target = TARGETS[position].ideal;
+
+        let value = Math.max(0, target - counts[position]);
+
+        needs[position] = value * 5;
+
+    });
+
+    return needs;
+}
+
+
 function getRosterSummary(roster, round) {
 
     return {
@@ -121,3 +141,4 @@ function getRosterSummary(roster, round) {
 
 window.calculatePositionNeed = calculatePositionNeed;
 window.getRosterSummary = getRosterSummary;
+window.calculateRosterNeed = calculateRosterNeed;
