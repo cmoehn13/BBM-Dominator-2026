@@ -198,7 +198,7 @@ ${player.qbStack || "None"}
 
 <br>
 
-<button onclick="window.removePlayer('${JSON.stringify(player.name)}')">
+<button onclick='removePlayer(${JSON.stringify(player.name)})'>
 
 Remove
 
@@ -258,7 +258,7 @@ function renderRecommendations() {
 
             <br>
 
-            <button onclick="draftPlayer('${JSON.stringify(player.name)}')">
+            <button onclick='draftPlayer(${JSON.stringify(player.name)})'>
                 Draft Player
             </button>
 
@@ -394,7 +394,7 @@ area.innerHTML = targets.map(player =>
 
 <div class="player">
 
-<b>${JSON.stringify(player.name)}</b>
+<b>${player.name}</b>
 
 <br>
 
@@ -409,7 +409,7 @@ Stack Bonus:
 
 <br><br>
 
-<button onclick="window.draftPlayer('${JSON.stringify(player.name)}')">
+<button onclick='draftPlayer(${JSON.stringify(player.name)})'>
 Draft Player
 </button>
 
