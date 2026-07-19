@@ -463,18 +463,24 @@ Draft Player
 
 }
 
+
 function nextRound(){
 
 currentRound++;
 
-document.getElementById(
-"currentRound"
-).innerHTML = currentRound;
+const roundDisplay =
+document.getElementById("currentRound");
+
+if(roundDisplay){
+
+roundDisplay.innerHTML =
+currentRound;
+
+}
 
 render();
 
 }
-
 
 // Refresh screen
 
