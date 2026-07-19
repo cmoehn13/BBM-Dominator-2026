@@ -12,7 +12,7 @@ import { processPosition } from "./positionStage.js";
 import { processValue } from "./valueStage.js";
 
 // Future stages
-// import { processStack } from "./stackStage.js";
+ import { processStack } from "./stackStage.js";
 // import { processPlayoff } from "./playoffStage.js";
 // import { processValue } from "./valueStage.js";
 
@@ -23,7 +23,7 @@ export function buildRecommendation(player, draftState) {
     recommendation = processCeiling(recommendation);
     recommendation = processPosition(recommendation, draftState);
     recommendation = processValue(recommendation, draftState);
-    // recommendation = processStack(recommendation, draftState);
+    recommendation = processStack(recommendation, draftState);
     // recommendation = processPlayoff(recommendation, draftState);
     // recommendation = processValue(recommendation);
 
