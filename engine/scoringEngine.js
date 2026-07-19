@@ -1,19 +1,7 @@
-// BBM Dominator Scoring Engine v0.2B
-//import { DraftState } from "./draftState.js";
-//import { buildRecommendation } from "./recommendationPipeline.js";
-
-import {
-    calculatePositionNeed
-} from "./rosterEngine.js";
-
-
-//function calculateBBMDominatorScore(player, roster = []) {
-//
-//    DraftState.roster = roster;
-//    const recommendation =
-//        buildRecommendation(player, DraftState);
-//    return recommendation.dominatorScore;
-//}
+// =========================================
+// BBM Dominator Scoring Engine
+// v0.3.2 Stabilization
+// =========================================
 
 function calculateBBMDominatorScore(player, roster = []) {
 
@@ -30,18 +18,33 @@ function calculateBBMDominatorScore(player, roster = []) {
     return Math.round(score * 10) / 10;
 }
 
-function getRecommendation(player, roster = []) {
+function calculateStackBonus(player, roster = []) {
 
-    DraftState.roster = roster;
+    if (!roster || roster.length === 0) {
+        return 0;
+    }
 
-    return buildRecommendation(player, DraftState);
+    let bonus = 0;
 
+    roster.forEach(existing => {
+
+        if (
+            player.qbStack &&
+            existing.name === player.qbStack
+        ) {
+            bonus += 8;
+        }
+
+        if (
+            existing.qbStack &&
+            existing.qbStack === player.name
+        ) {
+            bonus += 8;
+        }
+
+    });
+
+    return bonus;
 }
 
-
-
-// Make scoring engine available to app.js
-
 window.calculateBBMDominatorScore = calculateBBMDominatorScore;
-window.getRecommendation = getRecommendation;
-
