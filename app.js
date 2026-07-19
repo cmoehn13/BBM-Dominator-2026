@@ -1,7 +1,12 @@
+import { getRecommendation } from "./engine/scoringEngine.js";
+
+import {
+    calculateRosterNeeds,
+    detectDraftStrategy
+} from "./draftLogic.js";
+
 let players = [];
-
 let roster = [];
-
 let currentRound = 1;
 
 // Load player database
