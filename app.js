@@ -283,6 +283,8 @@ function renderRecommendations() {
 
     btn.addEventListener("click", () => {
 
+        alert(btn.dataset.name);
+
         draftPlayer(
             decodeURIComponent(btn.dataset.name)
         );
@@ -290,6 +292,14 @@ function renderRecommendations() {
     });
 
 });
+
+ //   area.querySelectorAll(".draft-btn").forEach(btn => {
+ //   btn.addEventListener("click", () => {
+ //       draftPlayer(
+//            decodeURIComponent(btn.dataset.name)
+//        );
+//    });
+//});
 
 }
 
@@ -559,10 +569,10 @@ renderDraftIntelligence();
 }
 
 document.getElementById("previousRoundBtn")
-    ?.addEventListener("click", previousRound);
+    ?.addEventListener("click", previousRound());
 
 document.getElementById("nextRoundBtn")
-    ?.addEventListener("click", nextRound);
+    ?.addEventListener("click", nextRound());
 
 window.draftPlayer = draftPlayer;
 window.removePlayer = removePlayer;
