@@ -71,6 +71,61 @@ function detectStrategy(roster) {
     };
 }
 
+// =============================================
+// Detect Draft Strategy
+// =============================================
+
+function detectDraftStrategy(roster = []) {
+
+    const counts = {
+        QB: 0,
+        RB: 0,
+        WR: 0,
+        TE: 0
+    };
+
+    roster.forEach(player => {
+
+        if (counts[player.position] !== undefined) {
+            counts[player.position]++;
+        }
+
+    });
+
+    const totalPlayers = roster.length;
+
+    // Not enough information yet
+    if (totalPlayers < 4) {
+        return "Early Draft";
+    }
+
+    // Hero RB
+    if (counts.RB === 1 && counts.WR >= 3) {
+        return "Hero RB";
+    }
+
+    // Zero RB
+    if (counts.RB <= 1 && counts.WR >= 4) {
+        return "Zero RB";
+    }
+
+    // Robust RB
+    if (counts.RB >= 3 && counts.WR <= 2) {
+        return "Robust RB";
+    }
+
+    // Elite TE
+    if (counts.TE >= 1 && totalPlayers <= 6) {
+        return "Elite TE";
+    }
+
+    // Balanced
+    return "Balanced";
+
+}
+
+
+
  function calculatePositionNeed(player, roster) {
 
     const counts = {
@@ -187,7 +242,7 @@ function getRosterSummary(roster, round) {
     };
 
 }
-
+window.detectDraftStrategy = detectDraftStrategy;
 window.calculatePositionNeed = calculatePositionNeed;
 window.getRosterSummary = getRosterSummary;
 window.calculateRosterNeeds = calculateRosterNeeds;
