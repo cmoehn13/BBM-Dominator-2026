@@ -507,6 +507,48 @@ render();
 
 }
 
+
+function renderDraftIntelligence(){
+
+    const info =
+        calculateRosterNeeds(roster);
+
+    const strategy =
+        detectDraftStrategy(roster);
+
+    const panel =
+        document.getElementById("draftIntelligence");
+
+    if(!panel) return;
+
+    panel.innerHTML = `
+
+        <b>Strategy</b>
+
+        <br>
+
+        ${strategy}
+
+        <hr>
+
+        QB: ${info.counts.QB}/3
+
+        <br>
+
+        RB: ${info.counts.RB}/6
+
+        <br>
+
+        WR: ${info.counts.WR}/8
+
+        <br>
+
+        TE: ${info.counts.TE}/3
+
+    `;
+
+}
+
 // Refresh screen
 
 function render(){
@@ -516,6 +558,8 @@ renderRoster();
 renderRecommendations();
 
 renderStackRecommendations();
+
+renderDraftIntelligence();  
 
 }
 
