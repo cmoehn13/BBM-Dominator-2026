@@ -193,126 +193,55 @@ Remove
 
 
 // Display recommendations
+function renderRecommendations() {
 
-function renderRecommendations(){
+    const area = document.getElementById("recommendations");
 
+    if (!area) return;
 
-const area =
-document.getElementById("recommendations");
+    const available = players
+        .filter(player =>
+            !roster.some(drafted => drafted.name === player.name)
+        )
+        .map(player => ({
+            ...player,
+            dominatorScore: calculateBBMDominatorScore(player, roster)
+        }))
+        .sort((a, b) => b.dominatorScore - a.dominatorScore)
+        .slice(0, 5);
 
+    area.innerHTML = available.map(player => `
 
-if(!area) return;
+        <div class="player">
 
+            <b>${player.name}</b><br>
 
-const available = players
+            ${player.position} | ${player.team}
 
-.filter(player =>
+            <br><br>
 
-!roster.some(
+            <span class="score">
+                Dominator Score:
+                <b>${player.dominatorScore}</b>
+            </span>
 
-drafted =>
+            <br><br>
 
-drafted.name === player.name
+            <div class="small">
+                BBM Score: ${player.bbmScore}
+                <br>
+                Stack: ${player.qbStack || "None"}
+            </div>
 
-)
+            <br>
 
-)
+            <button onclick="draftPlayer('${player.name}')">
+                Draft Player
+            </button>
 
-.map(player => {
+        </div>
 
-    return getRecommendation(
-        player,
-        roster
-    );
-
-})
-
-
-.sort(
-
-(a,b)=>
-
-b.dominatorScore -
-
-a.dominatorScore
-
-)
-
-
-.slice(0,5);
-
-
-
-area.innerHTML = available.map(player =>
-
-
-`
-
-<div class="player">
-
-<b>${player.name}</b>
-
-<br>
-
-${player.position}
-|
-${player.team}
-
-
-<br>
-
-
-<span class="score">
-
-Dominator Score:
-${recommendation.dominatorScore}
-
-<div class="small">
-
-Why:
-
-<ul>
-
-${recommendation.reasons
-    .map(reason => `<li>${reason}</li>`)
-    .join("")}
-
-</ul>
-
-</div>
-
-</span>
-
-
-<br>
-
-
-<div class="small">
-
-BBM:
-${player.bbmScore}
-
-<br>
-
-Stack:
-${player.qbStack || "None"}
-
-</div>
-
-
-<button onclick="window.draftPlayer('${player.name}')">
-
-Draft Player
-
-</button>
-
-
-</div>
-
-
-`
-
-).join("");
+    `).join("");
 
 }
 
