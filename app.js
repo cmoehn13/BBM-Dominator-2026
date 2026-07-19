@@ -240,20 +240,20 @@ a.dominatorScore
 
 
 
-area.innerHTML = available.map(recommendation =>
+area.innerHTML = available.map(player =>
 
 
 `
 
 <div class="player">
 
-<b>${recommendation.player.name}</b>
+<b>${player.name}</b>
 
 <br>
 
-${recommendation.player.position}
+${player.position}
 |
-${recommendation.player.team}
+${player.team}
 
 
 <br>
@@ -287,17 +287,17 @@ ${recommendation.reasons
 <div class="small">
 
 BBM:
-${recommendation.player.bbmScore}
+${player.bbmScore}
 
 <br>
 
 Stack:
-${recommendation.player.qbStack || "None"}
+${player.qbStack || "None"}
 
 </div>
 
 
-<button onclick="window.draftPlayer('${recommendation.player.name}')">
+<button onclick="window.draftPlayer('${player.name}')">
 
 Draft Player
 
@@ -333,22 +333,22 @@ return;
 }
 
 
-let targets = recommendation.players
+let targets = players
 
-.filter(recommendation.player =>
+.filter(player =>
 
 !roster.some(
 
 drafted =>
 
-drafted.name === recommendation.player.name
+drafted.name === player.name
 
 )
 
 )
 
 
-.map(recommendation.player => {
+.map(player => {
 
 
 let bonus = 0;
@@ -358,8 +358,8 @@ roster.forEach(existing => {
 
 
 if(
-recommendation.player.qbStack &&
-existing.qbStack === recommendation.player.qbStack
+player.qbStack &&
+existing.qbStack === player.qbStack
 ){
 
 bonus += 5;
@@ -368,8 +368,8 @@ bonus += 5;
 
 
 if(
-recommendation.player.qbStack &&
-existing.name === recommendation.player.qbStack
+player.qbStack &&
+existing.name === player.qbStack
 ){
 
 bonus += 10;
@@ -379,7 +379,7 @@ bonus += 10;
 
 if(
 existing.qbStack &&
-existing.qbStack === recommendation.player.name
+existing.qbStack === player.name
 ){
 
 bonus += 10;
@@ -392,7 +392,7 @@ bonus += 10;
 
 return {
 
-...recommendation.player,
+...player,
 
 stackBonus: bonus
 
@@ -402,9 +402,9 @@ stackBonus: bonus
 })
 
 
-.filter(recommendation.player =>
+.filter(player =>
 
-recommendation.player.stackBonus > 0
+player.stackBonus > 0
 
 )
 
@@ -433,28 +433,28 @@ return;
 
 }
 
-area.innerHTML = targets.map(recommendation.player =>
+area.innerHTML = targets.map(player =>
 
 `
 
 <div class="player">
 
-<b>${recommendation.player.name}</b>
+<b>${player.name}</b>
 
 <br>
 
-${recommendation.player.position}
+${player.position}
 |
-${recommendation.player.team}
+${player.team}
 
 <br>
 
 Stack Bonus:
-+${recommendation.player.stackBonus}
++${player.stackBonus}
 
 <br><br>
 
-<button onclick="window.draftPlayer('${recommendation.player.name}')">
+<button onclick="window.draftPlayer('${player.name}')">
 Draft Player
 </button>
 
@@ -561,7 +561,7 @@ renderRoster();
 
 renderRecommendations();
 
-//renderStackRecommendations();
+renderStackRecommendations();
 
 renderDraftIntelligence();  
 
