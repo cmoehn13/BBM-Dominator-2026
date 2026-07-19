@@ -3,14 +3,14 @@
 // Version 0.3
 // ==============================
 
-export const TARGETS = {
+const TARGETS = {
     QB: { min: 2, ideal: 3 },
     RB: { min: 5, ideal: 6 },
     WR: { min: 7, ideal: 9 },
     TE: { min: 2, ideal: 3 }
 };
 
-export function getRosterCounts(roster) {
+function getRosterCounts(roster) {
 
     const counts = {
         QB: 0,
@@ -28,7 +28,7 @@ export function getRosterCounts(roster) {
     return counts;
 }
 
-export function getDraftPhase(round) {
+function getDraftPhase(round) {
 
     if (round <= 6) return "EARLY";
     if (round <= 12) return "MIDDLE";
@@ -37,7 +37,7 @@ export function getDraftPhase(round) {
     return "ENDGAME";
 }
 
-export function detectStrategy(roster) {
+function detectStrategy(roster) {
 
     const counts = getRosterCounts(roster);
 
@@ -71,7 +71,7 @@ export function detectStrategy(roster) {
     };
 }
 
-export function calculatePositionNeed(player, roster) {
+ function calculatePositionNeed(player, roster) {
 
     const counts = {
         QB: 0,
@@ -103,7 +103,7 @@ export function calculatePositionNeed(player, roster) {
     }
 }
 
-export function getRosterSummary(roster, round) {
+function getRosterSummary(roster, round) {
 
     return {
 
@@ -120,3 +120,4 @@ export function getRosterSummary(roster, round) {
 }
 
 window.calculatePositionNeed = calculatePositionNeed;
+window.getRosterSummary = getRosterSummary;
