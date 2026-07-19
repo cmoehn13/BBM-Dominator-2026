@@ -1,4 +1,4 @@
-const CACHE_NAME = "bbm-dominator-v0.3.13";
+const CACHE_NAME = "bbm-dominator-v0.3.14";
 
 const FILES_TO_CACHE = [
   "./",
