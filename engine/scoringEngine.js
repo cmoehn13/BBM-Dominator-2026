@@ -28,46 +28,6 @@ function getRecommendation(player, roster = []) {
 
 
 
-function calculateStackBonus(player, roster){
-
-if(!roster || roster.length === 0){
-
-return 0;
-
-}
-
-let bonus = 0;
-
-
-roster.forEach(existing => {
-
-if(
-player.qbStack &&
-existing.name === player.qbStack
-){
-
-bonus += 8;
-
-}
-
-
-if(
-existing.qbStack &&
-existing.qbStack === player.name
-){
-
-bonus += 8;
-
-}
-
-});
-
-
-return bonus;
-
-}
-
-
 // Make scoring engine available to app.js
 
 window.calculateBBMDominatorScore = calculateBBMDominatorScore;
