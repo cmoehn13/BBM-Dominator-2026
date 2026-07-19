@@ -223,9 +223,7 @@ calculateBBMDominatorScore(
 
 player,
 
-roster,
-
-curretRound
+roster
 
 )
 
