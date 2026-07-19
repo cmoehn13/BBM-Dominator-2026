@@ -224,7 +224,7 @@ function renderRecommendations() {
 
     const available = players
         .filter(player =>
-            !roster.some(drafted => drafted.name === JSON.stringify(player.name))
+            !roster.some(drafted => drafted.name === player.name)
         )
         .map(player => ({
             ...player,
@@ -296,7 +296,7 @@ let targets = players
 
 drafted =>
 
-drafted.name === JSON.stringify(player.name)
+drafted.name === player.name
 
 )
 
@@ -334,7 +334,7 @@ bonus += 10;
 
 if(
 existing.qbStack &&
-existing.qbStack === JSON.stringify(player.name)
+existing.qbStack === player.name
 ){
 
 bonus += 10;
