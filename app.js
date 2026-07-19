@@ -258,7 +258,7 @@ function renderRecommendations() {
 
             <br>
 
-            <button onclick="draftPlayer('${player.name}')">
+            <button onclick="draftPlayer('${JSON.stringify(player.name)}')">
                 Draft Player
             </button>
 
