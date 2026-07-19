@@ -33,6 +33,20 @@ let players = [];
 let roster = [];
 let currentRound = 1;
 
+function getDraftState() {
+
+    return {
+
+        currentRound,
+
+        roster,
+
+        draftBoard: getDraftBoard()
+
+    };
+
+}
+
 // Load player database
 
 fetch("./players.json")
