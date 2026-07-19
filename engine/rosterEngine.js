@@ -105,3 +105,5 @@ export function getRosterSummary(roster, round) {
     };
 
 }
+
+window.calculatePositionNeed = calculatePositionNeed;
