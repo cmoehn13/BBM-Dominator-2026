@@ -259,6 +259,20 @@ ${recommendation.player.team}
 Dominator Score:
 ${recommendation.player.dominatorScore}
 
+<div class="small">
+
+Why:
+
+<ul>
+
+${recommendation.reasons
+    .map(reason => `<li>${reason}</li>`)
+    .join("")}
+
+</ul>
+
+</div>
+
 </span>
 
 
