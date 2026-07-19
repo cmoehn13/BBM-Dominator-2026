@@ -103,24 +103,63 @@ function detectStrategy(roster) {
     }
 }
 
-function calculateRosterNeed(roster) {
+// =============================================
+// Calculate Overall Roster Needs
+// =============================================
 
-    const counts = getRosterCounts(roster);
+function calculateRosterNeeds(roster = []) {
+
+    const counts = {
+        QB: 0,
+        RB: 0,
+        WR: 0,
+        TE: 0
+    };
+
+    roster.forEach(player => {
+
+        if (counts.hasOwnProperty(player.position)) {
+            counts[player.position]++;
+        }
+
+    });
+
+    const targets = {
+        QB: 3,
+        RB: 6,
+        WR: 8,
+        TE: 3
+    };
 
     const needs = {};
 
-    Object.keys(TARGETS).forEach(position => {
+    Object.keys(targets).forEach(position => {
 
-        const target = TARGETS[position].ideal;
+        const current = counts[position];
+        const target = targets[position];
+        const remaining = Math.max(target - current, 0);
 
-        let value = Math.max(0, target - counts[position]);
+        let status = "Complete";
 
-        needs[position] = value * 5;
+        if (remaining >= 3) {
+            status = "High";
+        } else if (remaining >= 1) {
+            status = "Medium";
+        }
+
+        needs[position] = {
+            drafted: current,
+            target: target,
+            remaining: remaining,
+            status: status
+        };
 
     });
 
     return needs;
+
 }
+
 
 
 function getRosterSummary(roster, round) {
@@ -141,4 +180,4 @@ function getRosterSummary(roster, round) {
 
 window.calculatePositionNeed = calculatePositionNeed;
 window.getRosterSummary = getRosterSummary;
-window.calculateRosterNeed = calculateRosterNeed;
+window.calculateRosterNeeds = calculateRosterNeeds;
