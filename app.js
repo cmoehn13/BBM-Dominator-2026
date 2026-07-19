@@ -257,7 +257,7 @@ ${recommendation.player.team}
 <span class="score">
 
 Dominator Score:
-${recommendation.player.dominatorScore}
+${recommendation.dominatorScore}
 
 <div class="small">
 
@@ -354,7 +354,7 @@ roster.forEach(existing => {
 
 if(
 recommendation.player.qbStack &&
-existing.qbStack === recommednation.player.qbStack
+existing.qbStack === recommendation.player.qbStack
 ){
 
 bonus += 5;
