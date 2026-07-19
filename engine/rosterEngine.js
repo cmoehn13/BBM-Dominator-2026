@@ -190,7 +190,7 @@ function getRosterSummary(roster, round) {
     };
 
 }
-window.detectDraftStrategy = detectDraftStrategy;
+
 window.calculatePositionNeed = calculatePositionNeed;
 window.getRosterSummary = getRosterSummary;
 window.calculateRosterNeeds = calculateRosterNeeds;
