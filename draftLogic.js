@@ -207,7 +207,8 @@ let score = 0;
 
 score += calculateBBMDominatorScore(
 player,
-roster
+roster,
+  round
 );
 
 
