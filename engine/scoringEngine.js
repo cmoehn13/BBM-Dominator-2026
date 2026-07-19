@@ -1,21 +1,33 @@
 // BBM Dominator Scoring Engine v0.2B
-import { DraftState } from "./draftState.js";
-import { buildRecommendation } from "./recommendationPipeline.js";
+//import { DraftState } from "./draftState.js";
+//import { buildRecommendation } from "./recommendationPipeline.js";
 
 import {
     calculatePositionNeed
 } from "./rosterEngine.js";
 
 
+//function calculateBBMDominatorScore(player, roster = []) {
+//
+//    DraftState.roster = roster;
+//    const recommendation =
+//        buildRecommendation(player, DraftState);
+//    return recommendation.dominatorScore;
+//}
+
 function calculateBBMDominatorScore(player, roster = []) {
 
-    DraftState.roster = roster;
+    let score = 0;
 
-    const recommendation =
-        buildRecommendation(player, DraftState);
+    score += (player.bbmScore || 0) * 0.40;
+    score += (player.ceilingScore || 0) * 0.20;
+    score += (player.playoffScore || 0) * 0.15;
+    score += (player.stackScore || 0) * 0.15;
+    score += (player.valueScore || 0) * 0.10;
 
-    return recommendation.dominatorScore;
+    score += calculateStackBonus(player, roster);
 
+    return Math.round(score * 10) / 10;
 }
 
 function getRecommendation(player, roster = []) {
