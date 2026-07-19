@@ -7,9 +7,9 @@ import { createRecommendation } from "./recommendationFactory.js";
 
 import { processProjection } from "./projectionStage.js";
 import { processCeiling } from "./ceilingStage.js";
+import { processPosition } from "./positionStage.js";
 
 // Future stages
-// import { processPosition } from "./positionStage.js";
 // import { processStack } from "./stackStage.js";
 // import { processPlayoff } from "./playoffStage.js";
 // import { processValue } from "./valueStage.js";
@@ -22,7 +22,8 @@ export function buildRecommendation(player, draftState) {
 
     recommendation = processCeiling(recommendation);
 
-    // recommendation = processPosition(recommendation, draftState);
+    recommendation = processPosition(recommendation, draftState);
+
     // recommendation = processStack(recommendation, draftState);
     // recommendation = processPlayoff(recommendation, draftState);
     // recommendation = processValue(recommendation);
