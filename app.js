@@ -242,32 +242,36 @@ function renderRecommendations() {
         .sort((a, b) => b.totalScore - a.totalScore)
         .slice(0, 5);
 
-    area.innerHTML = available.map(player => `
+    area.innerHTML = available.map(recommendation => `
 
         <div class="player">
 
-            <b>${player.name}</b><br>
+            <b>${recommendation.player.name}</b><br>
 
-            ${player.position} | ${player.team}
+            ${recommendation.player.position} | ${recommendation.player.team}
 
             <br><br>
 
             <span class="score">
                 Dominator Score:
-                <b>${player.dominatorScore}</b>
+                <b>${recommendation.totalScore}</b>
             </span>
 
             <br><br>
 
             <div class="small">
-                BBM Score: ${player.bbmScore}
+                BBM Score: ${recommendation.player.bbmScore}
                 <br>
-                Stack: ${player.qbStack || "None"}
+                Stack: ${recommendation.player.qbStack || "None"}
+            </div>
+
+            <div class="small">
+                ${recommendation.reasons.join("<br>")}
             </div>
 
             <br>
 
-            <button class="draft-btn" data-name="${encodeURIComponent(player.name)}">
+            <button class="draft-btn" data-name="${encodeURIComponent(recommendation.player.name)}">
                 Draft Player
             </button>
 
