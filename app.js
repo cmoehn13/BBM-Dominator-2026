@@ -35,10 +35,13 @@ renderRecommendations();
 
 .catch(error => {
 
-console.error(error);
+    console.error(error);
 
-document.getElementById("recommendations").innerHTML =
-"Unable to load player database.";
+    document.getElementById("recommendations").innerHTML = `
+        <pre style="color:red;white-space:pre-wrap;">
+${error.stack || error.message}
+        </pre>
+    );
 
 });
 
