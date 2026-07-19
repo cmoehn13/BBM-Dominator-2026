@@ -330,7 +330,7 @@ return;
 
 let targets = recommendation.players
 
-.filter(recommenation.player =>
+.filter(recommendation.player =>
 
 !roster.some(
 
@@ -387,7 +387,7 @@ bonus += 10;
 
 return {
 
-...recommednation.player,
+...recommendation.player,
 
 stackBonus: bonus
 
@@ -445,7 +445,7 @@ ${recommendation.player.team}
 <br>
 
 Stack Bonus:
-+${recommendaiton.player.stackBonus}
++${recommendation.player.stackBonus}
 
 <br><br>
 
@@ -556,7 +556,7 @@ renderRoster();
 
 renderRecommendations();
 
-renderStackRecommendations();
+//renderStackRecommendations();
 
 renderDraftIntelligence();  
 
