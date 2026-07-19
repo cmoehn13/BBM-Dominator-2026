@@ -43,7 +43,6 @@ render();
 <pre style="color:red;white-space:pre-wrap;">${error.stack || error.message}</pre>
 `;
 });
-});
 
 
 
