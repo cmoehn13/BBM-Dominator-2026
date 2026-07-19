@@ -1,4 +1,4 @@
-const CACHE_NAME = "bbm-dominator-v1.5";
+const CACHE_NAME = "bbm-dominator-v1.6";
 
 const FILES_TO_CACHE = [
   "./",
@@ -30,6 +30,34 @@ return cache.addAll(FILES_TO_CACHE);
 
 });
 
+
+self.addEventListener("activate", event => {
+
+event.waitUntil(
+
+caches.keys().then(cacheNames => {
+
+return Promise.all(
+
+cacheNames.map(cache => {
+
+if(cache !== CACHE_NAME){
+
+return caches.delete(cache);
+
+}
+
+})
+
+);
+
+})
+
+.then(() => self.clients.claim())
+
+);
+
+});
 
 
 self.addEventListener(
