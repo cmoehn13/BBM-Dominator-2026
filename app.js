@@ -482,6 +482,31 @@ render();
 
 }
 
+function previousRound(){
+
+if(currentRound > 1){
+
+currentRound--;
+
+}
+
+
+const roundDisplay =
+document.getElementById("currentRound");
+
+
+if(roundDisplay){
+
+roundDisplay.innerHTML =
+currentRound;
+
+}
+
+
+render();
+
+}
+
 // Refresh screen
 
 function render(){
@@ -498,6 +523,7 @@ renderStackRecommendations();
 window.draftPlayer = draftPlayer;
 window.removePlayer = removePlayer;
 window.nextRound = nextRound;
+window.previousRound = previousRound;
 
 // Start app
 
