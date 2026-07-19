@@ -29,20 +29,20 @@ return response.json();
 
 players = data;
 
-renderRecommendations();
+loadRoster();
+render();
 
 })
+
 
 .catch(error => {
 
     console.error(error);
 
     document.getElementById("recommendations").innerHTML = `
-        <pre style="color:red;white-space:pre-wrap;">
-${error.stack || error.message}
-        </pre>
-    );
-
+<pre style="color:red;white-space:pre-wrap;">${error.stack || error.message}</pre>
+`;
+});
 });
 
 
@@ -507,7 +507,4 @@ window.previousRound = previousRound;
 
 // Start app
 
-loadRoster();
-
-render();
 
