@@ -198,11 +198,12 @@ ${player.qbStack || "None"}
 
 <br>
 
-<button onclick='removePlayer(${JSON.stringify(player.name)})'>
-
-Remove
-
+<button
+    class="remove-btn"
+    data-name="${encodeURIComponent(player.name)}">
+    Remove
 </button>
+
 
 
 </div>
@@ -210,6 +211,17 @@ Remove
 `
 
 ).join("");
+    area.querySelectorAll(".remove-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        removePlayer(
+            decodeURIComponent(btn.dataset.name)
+        );
+
+    });
+
+});
 
 }
 
@@ -258,13 +270,26 @@ function renderRecommendations() {
 
             <br>
 
-            <button onclick='draftPlayer(${JSON.stringify(player.name)})'>
+            <button class="draft-btn" data-name="${encodeURIComponent(player.name)}">
                 Draft Player
             </button>
+
 
         </div>
 
     `).join("");
+
+    area.querySelectorAll(".draft-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        draftPlayer(
+            decodeURIComponent(btn.dataset.name)
+        );
+
+    });
+
+});
 
 }
 
@@ -408,9 +433,10 @@ Stack Bonus:
 +${player.stackBonus}
 
 <br><br>
-
-<button onclick='draftPlayer(${JSON.stringify(player.name)})'>
-Draft Player
+<button
+    class="stack-draft-btn"
+    data-name="${encodeURIComponent(player.name)}">
+    Draft Player
 </button>
 
 </div>
@@ -418,7 +444,17 @@ Draft Player
 `
 
 ).join("");
+area.querySelectorAll(".stack-draft-btn").forEach(btn => {
 
+    btn.addEventListener("click", () => {
+
+        draftPlayer(
+            decodeURIComponent(btn.dataset.name)
+        );
+
+    });
+
+});
 
 }
 
