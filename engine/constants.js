@@ -28,6 +28,24 @@ export const ROSTER_TARGETS = {
     }
 };
 
+export const SCORING_WEIGHTS = {
+
+    projection: 0.40,
+
+    ceiling: 0.20,
+
+    positionNeed: 1.00,
+
+    playoff: 0.15,
+
+    stack: 0.15,
+
+    value: 0.10,
+
+    leverage: 0.00
+
+};
+
 export const POSITION_PRIORITY = {
 
     QB: 1,
