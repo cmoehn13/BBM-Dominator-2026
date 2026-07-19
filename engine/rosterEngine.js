@@ -71,23 +71,36 @@ export function detectStrategy(roster) {
     };
 }
 
-export function calculatePositionNeed(roster) {
+export function calculatePositionNeed(player, roster) {
 
-    const counts = getRosterCounts(roster);
+    const counts = {
+        QB: 0,
+        RB: 0,
+        WR: 0,
+        TE: 0
+    };
 
-    const needs = {};
-
-    Object.keys(TARGETS).forEach(position => {
-
-        const target = TARGETS[position].ideal;
-
-        let value = Math.max(0, target - counts[position]);
-
-        needs[position] = value * 5;
-
+    roster.forEach(p => {
+        counts[p.position]++;
     });
 
-    return needs;
+    switch (player.position) {
+
+        case "QB":
+            return counts.QB < 2 ? 8 : counts.QB < 3 ? 4 : 0;
+
+        case "RB":
+            return counts.RB < 5 ? 8 : counts.RB < 7 ? 4 : 0;
+
+        case "WR":
+            return counts.WR < 7 ? 8 : counts.WR < 9 ? 4 : 0;
+
+        case "TE":
+            return counts.TE < 2 ? 8 : counts.TE < 3 ? 4 : 0;
+
+        default:
+            return 0;
+    }
 }
 
 export function getRosterSummary(roster, round) {
