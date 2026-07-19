@@ -266,7 +266,8 @@ function renderRecommendations() {
             </div>
 
             <div class="small">
-                ${recommendation.reasons.join("<br>")}
+            ${(recommendation.reasons || []).join("<br>")}
+                
             </div>
 
             <br>
@@ -568,10 +569,10 @@ renderDraftIntelligence();
 }
 
 document.getElementById("previousRoundBtn")
-    ?.addEventListener("click", previousRound());
+    ?.addEventListener("click", previousRound);
 
 document.getElementById("nextRoundBtn")
-    ?.addEventListener("click", nextRound());
+    ?.addEventListener("click", nextRound);
 
 window.draftPlayer = draftPlayer;
 window.removePlayer = removePlayer;
