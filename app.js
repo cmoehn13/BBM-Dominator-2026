@@ -283,8 +283,6 @@ function renderRecommendations() {
 
     btn.addEventListener("click", () => {
 
-        alert(btn.dataset.name);
-
         draftPlayer(
             decodeURIComponent(btn.dataset.name)
         );
