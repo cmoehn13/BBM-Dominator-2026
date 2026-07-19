@@ -2,6 +2,7 @@ let players = [];
 
 let roster = [];
 
+let currentRound = 1;
 
 // Load player database
 
@@ -222,7 +223,9 @@ calculateBBMDominatorScore(
 
 player,
 
-roster
+roster,
+
+curretRound
 
 )
 
