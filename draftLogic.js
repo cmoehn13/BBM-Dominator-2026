@@ -2,47 +2,83 @@
 
 function calculateRosterNeeds(roster){
 
+    const counts = {
+        QB:0,
+        RB:0,
+        WR:0,
+        TE:0
+    };
 
-let needs = {
+    roster.forEach(player => {
 
-QB: 0,
-RB: 0,
-WR: 0,
-TE: 0
+        if(counts[player.position] !== undefined){
+            counts[player.position]++;
+        }
 
-};
+    });
 
+    return {
 
-roster.forEach(player => {
+        counts,
 
+        targets:{
 
-if(player.position === "QB"){
-needs.QB++;
+            QB:3,
+            RB:6,
+            WR:8,
+            TE:3
+
+        },
+
+        needs:{
+
+            QB:Math.max(0,3-counts.QB),
+
+            RB:Math.max(0,6-counts.RB),
+
+            WR:Math.max(0,8-counts.WR),
+
+            TE:Math.max(0,3-counts.TE)
+
+        }
+
+    };
+
 }
 
 
-if(player.position === "RB"){
-needs.RB++;
+function detectDraftStrategy(roster){
+
+    const counts =
+        calculateRosterNeeds(roster).counts;
+
+    if(counts.RB <= 1 && counts.WR >= 4){
+
+        return "Zero RB";
+
+    }
+
+    if(counts.RB === 2 && counts.WR >= 3){
+
+        return "Hero RB";
+
+    }
+
+    if(counts.TE >= 2){
+
+        return "Elite TE";
+
+    }
+
+    if(counts.QB === 0 && counts.WR >= 5){
+
+        return "Late QB";
+
+    }
+
+    return "Balanced";
+
 }
-
-
-if(player.position === "WR"){
-needs.WR++;
-}
-
-
-if(player.position === "TE"){
-needs.TE++;
-}
-
-
-});
-
-
-return needs;
-
-}
-
 
 
 // Round based tournament adjustments
@@ -126,23 +162,27 @@ return bonus;
 
 function calculatePositionNeed(player, roster){
 
+    const rosterInfo =
+        calculateRosterNeeds(roster);
 
-const needs =
-calculateRosterNeeds(roster);
+    const need =
+        rosterInfo.needs[player.position];
 
+    switch(need){
 
-let bonus = 0;
+        case 3:
+            return 10;
 
+        case 2:
+            return 7;
 
+        case 1:
+            return 4;
 
-// Need QB later, not early
+        default:
+            return 0;
 
-if(
-player.position === "QB" &&
-needs.QB === 0
-){
-
-bonus += 2;
+    }
 
 }
 
