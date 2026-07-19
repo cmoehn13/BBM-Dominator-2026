@@ -463,6 +463,18 @@ Draft Player
 
 }
 
+function nextRound(){
+
+currentRound++;
+
+document.getElementById(
+"currentRound"
+).innerHTML = currentRound;
+
+render();
+
+}
+
 
 // Refresh screen
 
@@ -479,6 +491,7 @@ renderStackRecommendations();
 
 window.draftPlayer = draftPlayer;
 window.removePlayer = removePlayer;
+window.nextRound = nextRound;
 
 // Start app
 
