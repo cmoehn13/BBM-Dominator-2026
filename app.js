@@ -5,6 +5,30 @@
 //    detectDraftStrategy
 //} from "./draftLogic.js";
 
+window.onerror = function (message, source, line, column, error) {
+
+    const area = document.getElementById("recommendations");
+
+    if (area) {
+        area.innerHTML = `
+            <div style="color:red; font-family:monospace; white-space:pre-wrap;">
+ERROR:
+${message}
+
+FILE:
+${source}
+
+LINE:
+${line}
+
+${error && error.stack ? error.stack : ""}
+            </div>
+        `;
+    }
+
+    return false;
+};
+
 let players = [];
 let roster = [];
 let currentRound = 1;
