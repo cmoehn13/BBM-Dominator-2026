@@ -106,6 +106,9 @@ function detectStrategy(roster) {
 // =============================================
 // Calculate Overall Roster Needs
 // =============================================
+// =============================================
+// Calculate Overall Roster Needs
+// =============================================
 
 function calculateRosterNeeds(roster = []) {
 
@@ -118,7 +121,7 @@ function calculateRosterNeeds(roster = []) {
 
     roster.forEach(player => {
 
-        if (counts.hasOwnProperty(player.position)) {
+        if (counts[player.position] !== undefined) {
             counts[player.position]++;
         }
 
@@ -131,34 +134,41 @@ function calculateRosterNeeds(roster = []) {
         TE: 3
     };
 
-    const needs = {};
+    const remaining = {};
+    const status = {};
 
     Object.keys(targets).forEach(position => {
 
-        const current = counts[position];
-        const target = targets[position];
-        const remaining = Math.max(target - current, 0);
+        remaining[position] = Math.max(
+            targets[position] - counts[position],
+            0
+        );
 
-        let status = "Complete";
-
-        if (remaining >= 3) {
-            status = "High";
-        } else if (remaining >= 1) {
-            status = "Medium";
+        if (remaining[position] >= 3) {
+            status[position] = "High";
+        } else if (remaining[position] >= 1) {
+            status[position] = "Medium";
+        } else {
+            status[position] = "Complete";
         }
-
-        needs[position] = {
-            drafted: current,
-            target: target,
-            remaining: remaining,
-            status: status
-        };
 
     });
 
-    return needs;
+    return {
+
+        counts,
+
+        targets,
+
+        remaining,
+
+        status
+
+    };
 
 }
+
+window.calculateRosterNeeds = calculateRosterNeeds;
 
 
 
