@@ -198,7 +198,7 @@ ${player.qbStack || "None"}
 
 <br>
 
-<button onclick="window.removePlayer('${player.name}')">
+<button onclick="window.removePlayer('${JSON.stringify(player.name)}')">
 
 Remove
 
@@ -224,7 +224,7 @@ function renderRecommendations() {
 
     const available = players
         .filter(player =>
-            !roster.some(drafted => drafted.name === player.name)
+            !roster.some(drafted => drafted.name === JSON.stringify(player.name))
         )
         .map(player => ({
             ...player,
@@ -296,7 +296,7 @@ let targets = players
 
 drafted =>
 
-drafted.name === player.name
+drafted.name === JSON.stringify(player.name)
 
 )
 
@@ -334,7 +334,7 @@ bonus += 10;
 
 if(
 existing.qbStack &&
-existing.qbStack === player.name
+existing.qbStack === JSON.stringify(player.name)
 ){
 
 bonus += 10;
@@ -394,7 +394,7 @@ area.innerHTML = targets.map(player =>
 
 <div class="player">
 
-<b>${player.name}</b>
+<b>${JSON.stringify(player.name)}</b>
 
 <br>
 
@@ -409,7 +409,7 @@ Stack Bonus:
 
 <br><br>
 
-<button onclick="window.draftPlayer('${player.name}')">
+<button onclick="window.draftPlayer('${JSON.stringify(player.name)}')">
 Draft Player
 </button>
 
