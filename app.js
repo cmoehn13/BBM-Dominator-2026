@@ -238,11 +238,8 @@ function renderRecommendations() {
         .filter(player =>
             !roster.some(drafted => drafted.name === player.name)
         )
-        .map(player => ({
-            ...player,
-            dominatorScore: calculateBBMDominatorScore(player, roster)
-        }))
-        .sort((a, b) => b.dominatorScore - a.dominatorScore)
+        .map(player =>   getRecommendation(player,roster,currentRound))
+        .sort((a, b) => b.totalScore - a.totalScore)
         .slice(0, 5);
 
     area.innerHTML = available.map(player => `
