@@ -1,4 +1,7 @@
 // BBM Dominator Scoring Engine v0.2B
+import {
+    calculatePositionNeed
+} from "./rosterEngine.js";
 
 
 function calculateBBMDominatorScore(player, roster = []) {
