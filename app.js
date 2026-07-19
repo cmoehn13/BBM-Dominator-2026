@@ -252,7 +252,7 @@ function renderRecommendations() {
         .filter(player =>
             !roster.some(drafted => drafted.name === player.name)
         )
-        .map(player =>   getRecommendation(player,roster,currentRound))
+        .map(player =>   getRecommendation(player,getDraftState()))
         .sort((a, b) => b.totalScore - a.totalScore)
         .slice(0, 5);
 
