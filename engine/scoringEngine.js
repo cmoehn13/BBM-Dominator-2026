@@ -1,4 +1,7 @@
 // BBM Dominator Scoring Engine v0.2B
+import { DraftState } from "./draftState.js";
+import { buildRecommendation } from "./recommendationPipeline.js";
+
 import {
     calculatePositionNeed
 } from "./rosterEngine.js";
@@ -6,48 +9,23 @@ import {
 
 function calculateBBMDominatorScore(player, roster = []) {
 
+    DraftState.roster = roster;
 
-let score = 0;
+    const recommendation =
+        buildRecommendation(player, DraftState);
 
-
-// Base player quality
-
-score += (player.bbmScore || 0) * 0.40;
-
-
-// Tournament ceiling
-
-score += (player.ceilingScore || 0) * 0.20;
-
-
-// Playoff upside
-
-score += (player.playoffScore || 0) * 0.15;
-
-
-// Stack potential
-
-score += (player.stackScore || 0) * 0.15;
-
-
-// ADP value
-
-score += (player.valueScore || 0) * 0.10;
-
-
-
-// Apply roster correlation bonus
-
-score += calculateStackBonus(
-player,
-roster
-);
-
-
-
-return Math.round(score * 10) / 10;
+    return recommendation.dominatorScore;
 
 }
+
+function getRecommendation(player, roster = []) {
+
+    DraftState.roster = roster;
+
+    return buildRecommendation(player, DraftState);
+
+}
+
 
 
 function calculateStackBonus(player, roster){
@@ -93,4 +71,5 @@ return bonus;
 // Make scoring engine available to app.js
 
 window.calculateBBMDominatorScore = calculateBBMDominatorScore;
+window.getRecommendation = getRecommendation;
 
