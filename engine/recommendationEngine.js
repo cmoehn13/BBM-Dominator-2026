@@ -3,7 +3,10 @@
 // v0.3.3
 // =============================================
 
-function getRecommendation(player, roster = [], round = 1) {
+function getRecommendation(player, draftState) {
+    const roster = draftState.roster;
+    const round = draftState.currentRound;
+    const draftBoard = draftState.draftBoard;
 
     const baseScore =
         calculateBBMDominatorScore(player, roster);
