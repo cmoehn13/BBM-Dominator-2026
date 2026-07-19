@@ -1,42 +1,44 @@
-// BBM Dominator Draft Logic Engine v0.2C
-import { ROSTER_TARGETS } from "./engine/constants.js";
+// =============================================
+// BBM Dominator Draft Logic Engine
+// v0.3.2 Stabilization Release
+// =============================================
 
-function calculateRosterNeeds(roster){
+function calculateRosterNeeds(roster = []) {
 
     const counts = {
-        QB:0,
-        RB:0,
-        WR:0,
-        TE:0
+        QB: 0,
+        RB: 0,
+        WR: 0,
+        TE: 0
     };
 
     roster.forEach(player => {
 
-        if(counts[player.position] !== undefined){
+        if (counts[player.position] !== undefined) {
             counts[player.position]++;
         }
 
     });
 
+    const targets = {
+        QB: 3,
+        RB: 6,
+        WR: 8,
+        TE: 3
+    };
+
     return {
 
         counts,
 
-        targets:{
+        targets,
 
-            QB: ROSTER_TARGETS.QB.ideal,
-            RB:ROSTER_TARGETS.RB.ideal,
-            WR: ROSTER_TARGETS.WR.ideal,
-            TE: ROSTER_TARGETS.TE.ideal
+        needs: {
 
-        },
-
-        needs:{
-
-            QB:Math.max(0,ROSTER_TARGETS.QB.ideal - counts.QB),
-            RB: Math.max(0,ROSTER_TARGETS.RB.ideal - counts.RB),
-            WR:Math.max(0,ROSTER_TARGETS.WR.ideal - counts.WR),
-            TE:Math.max(0,ROSTER_TARGETS.TE.ideal - counts.TE)
+            QB: Math.max(0, targets.QB - counts.QB),
+            RB: Math.max(0, targets.RB - counts.RB),
+            WR: Math.max(0, targets.WR - counts.WR),
+            TE: Math.max(0, targets.TE - counts.TE)
 
         }
 
@@ -44,129 +46,68 @@ function calculateRosterNeeds(roster){
 
 }
 
-
-function detectDraftStrategy(roster){
+function detectDraftStrategy(roster = []) {
 
     const counts =
         calculateRosterNeeds(roster).counts;
 
-    if(counts.RB <= 1 && counts.WR >= 4){
-
+    if (counts.RB <= 1 && counts.WR >= 4)
         return "Zero RB";
 
-    }
-
-    if(counts.RB === 2 && counts.WR >= 3){
-
+    if (counts.RB === 2 && counts.WR >= 3)
         return "Hero RB";
 
-    }
-
-    if(counts.TE >= 2){
-
+    if (counts.TE >= 2)
         return "Elite TE";
 
-    }
-
-    if(counts.QB === 0 && counts.WR >= 5){
-
+    if (counts.QB === 0 && counts.WR >= 5)
         return "Late QB";
-
-    }
 
     return "Balanced";
 
 }
 
+function calculateRoundAdjustment(player, round) {
 
-// Round based tournament adjustments
+    let bonus = 0;
 
-function calculateRoundAdjustment(player, round){
+    if (round <= 5) {
 
+        if (player.tier === "Elite")
+            bonus += 5;
 
-let bonus = 0;
+        if (player.position === "WR")
+            bonus += 2;
 
+    }
 
+    if (round >= 6 && round <= 12) {
 
-// Early rounds prioritize elite ceilings
+        if (player.qbStack)
+            bonus += 4;
 
-if(round <= 5){
+    }
 
+    if (round >= 13) {
 
-if(player.tier === "Elite"){
+        if ((player.valueScore || 0) >= 90)
+            bonus += 5;
 
-bonus += 5;
+        if ((player.ceilingScore || 0) >= 90)
+            bonus += 4;
 
-}
+    }
 
-
-if(player.position === "WR"){
-
-bonus += 2;
-
-}
-
-
-}
-
-
-
-// Middle rounds prioritize stacks
-
-if(round >= 6 && round <= 12){
-
-
-if(player.qbStack){
-
-bonus += 4;
+    return bonus;
 
 }
 
+function calculatePositionNeed(player, roster) {
 
-}
+    const needs =
+        calculateRosterNeeds(roster).needs;
 
-
-
-// Late rounds prioritize upside
-
-if(round >= 13){
-
-
-if(player.valueScore >= 90){
-
-bonus += 5;
-
-}
-
-
-if(player.ceilingScore >= 90){
-
-bonus += 4;
-
-}
-
-
-}
-
-
-
-return bonus;
-
-}
-
-
-
-// Position need adjustment
-
-function calculatePositionNeed(player, roster){
-
-    const rosterInfo =
-        calculateRosterNeeds(roster);
-
-    const need =
-        rosterInfo.needs[player.position];
-
-    switch(need){
+    switch (needs[player.position]) {
 
         case 3:
             return 10;
@@ -184,97 +125,40 @@ function calculatePositionNeed(player, roster){
 
 }
 
-
-
-// RB scarcity
-
-if(
-player.position === "RB" &&
-needs.RB < 3
-){
-
-bonus += 4;
-
-}
-
-
-
-// WR heavy BBM preference
-
-if(
-player.position === "WR" &&
-needs.WR < 5
-){
-
-bonus += 5;
-
-}
-
-
-
-// TE premium
-
-if(
-player.position === "TE" &&
-needs.TE === 0
-){
-
-bonus += 3;
-
-}
-
-
-
-return bonus;
-
-}
-
-
-
-
 function calculateDraftRecommendationScore(
-player,
-roster,
-round
-){
+    player,
+    roster,
+    round
+) {
 
+    let score =
+        calculateBBMDominatorScore(player, roster);
 
-let score = 0;
+    score +=
+        calculateRoundAdjustment(player, round);
 
+    score +=
+        calculatePositionNeed(player, roster);
 
-
-score += calculateBBMDominatorScore(
-player,
-roster,
-  round
-);
-
-
-
-score += calculateRoundAdjustment(
-player,
-round
-);
-
-
-
-score += calculatePositionNeed(
-player,
-roster
-);
-
-
-
-return Math.round(score * 10) / 10;
-
+    return Math.round(score * 10) / 10;
 
 }
 
-
-
-window.calculateDraftRecommendationScore =
-calculateDraftRecommendationScore;
-
+// =============================================
+// Global exports
+// =============================================
 
 window.calculateRosterNeeds =
-calculateRosterNeeds;
+    calculateRosterNeeds;
+
+window.detectDraftStrategy =
+    detectDraftStrategy;
+
+window.calculateRoundAdjustment =
+    calculateRoundAdjustment;
+
+window.calculatePositionNeed =
+    calculatePositionNeed;
+
+window.calculateDraftRecommendationScore =
+    calculateDraftRecommendationScore;
