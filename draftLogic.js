@@ -1,4 +1,5 @@
 // BBM Dominator Draft Logic Engine v0.2C
+import { ROSTER_TARGETS } from "./engine/constants.js";
 
 function calculateRosterNeeds(roster){
 
@@ -23,22 +24,19 @@ function calculateRosterNeeds(roster){
 
         targets:{
 
-            QB:3,
-            RB:6,
-            WR:8,
-            TE:3
+            QB: ROSTER_TARGETS.QB.ideal,
+            RB:ROSTER_TARGETS.RB.ideal,
+            WR: ROSTER_TARGETS.WR.ideal,
+            TE: ROSTER_TARGETS.TE.ideal
 
         },
 
         needs:{
 
-            QB:Math.max(0,3-counts.QB),
-
-            RB:Math.max(0,6-counts.RB),
-
-            WR:Math.max(0,8-counts.WR),
-
-            TE:Math.max(0,3-counts.TE)
+            QB:Math.max(0,ROSTER_TARGETS.QB.ideal - counts.QB),
+            RB: Math.max(0,ROSTER_TARGETS.RB.ideal - counts.RB),
+            WR:Math.max(0,ROSTER_TARGETS.WR.ideal - counts.WR),
+            TE:Math.max(0,ROSTER_TARGETS.TE.ideal - counts.TE)
 
         }
 
