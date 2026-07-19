@@ -558,6 +558,11 @@ renderDraftIntelligence();
 
 }
 
+document.getElementById("previousRoundBtn")
+    ?.addEventListener("click", previousRound);
+
+document.getElementById("nextRoundBtn")
+    ?.addEventListener("click", nextRound);
 
 window.draftPlayer = draftPlayer;
 window.removePlayer = removePlayer;
