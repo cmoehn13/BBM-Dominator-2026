@@ -29,6 +29,14 @@ function isPlayerDrafted(playerName) {
 
 }
 
+function getLastPick() {
+
+    if (draftBoard.length === 0) return null;
+
+    return draftBoard[draftBoard.length - 1];
+
+}
+
 
 
 function getDraftBoard() {
@@ -49,6 +57,7 @@ function getOverallPick() {
 
 }
 
+window.getLastPick = getLastPick;
 window.recordDraftPick = recordDraftPick;
 window.getDraftBoard = getDraftBoard;
 window.clearDraftBoard = clearDraftBoard;
