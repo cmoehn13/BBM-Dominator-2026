@@ -48,33 +48,48 @@ function calculateRosterNeeds(roster = []) {
 
 
 // Draft a player
+//function draftPlayer(name) {
+//const player =
+//players.find(
+//p => p.name === name
+//);
+//
+//if (!player) return;
+//roster.push(player);
+//recordDraftPick(
+//    player,
+//    userDraftSlot,
+//    currentRound,
+//    getOverallPick()
+//);
+//
+//saveRoster();
+//render();
+//}
 
 function draftPlayer(name) {
+    draftPlayerForTeam(name,userDraftSlot);
+}
 
+function draftPlayerForTeam(name, team) {
+    const player = players.find(p => p.name === name);
 
-const player =
-players.find(
-p => p.name === name
-);
+    if (!player) return;
 
+    // Only add to roster if it's your team
+    if (team === userDraftSlot) {
+        roster.push(player);
+        saveRoster();
+    }
 
-if (!player) return;
+    recordDraftPick(
+        player,
+        team,
+        currentRound,
+        getOverallPick()
+    );
 
-
-roster.push(player);
-
-recordDraftPick(
-    player,
-    userDraftSlot,
-    currentRound,
-    getOverallPick()
-);
-
-saveRoster();
-
-
-render();
-
+    render();
 }
 
 function detectDraftStrategy(roster = []) {
