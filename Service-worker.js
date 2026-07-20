@@ -1,4 +1,4 @@
-const CACHE_NAME = "bbm-dominator-v0.3.3.6";
+const CACHE_NAME = "bbm-dominator-v0.3.3.7";
 
 const FILES_TO_CACHE = [
   "./",
@@ -11,8 +11,7 @@ const FILES_TO_CACHE = [
   "./engine/recommendationPipeline.js",
   "./engine/recommendationFactory.js",
   "./engine/constants.js",
-  "./engine/valueStage.js",
-  "draftlogic.js"
+  "./engine/valueStage.js"
 ];
 
 
