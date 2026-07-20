@@ -224,13 +224,15 @@ function renderRecommendations() {
 
     if (!area) return;
 
-    const available = players
-        .filter(player =>
-            !roster.some(drafted => drafted.name === player.name)
-        )
+const available = players
+    .filter(player =>
+        !isPlayerDrafted(player.name))
         .map(player =>   getRecommendation(player,getDraftState()))
         .sort((a, b) => b.totalScore - a.totalScore)
         .slice(0, 5);
+    
+        //.filter(player =>
+        //    !roster.some(drafted => drafted.name === player.name))
 
     area.innerHTML = available.map(recommendation => `
 
