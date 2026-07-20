@@ -32,16 +32,15 @@ ${error && error.stack ? error.stack : ""}
 let players = [];
 let roster = [];
 let currentRound = 1;
+let userDraftSlot = 1;
 
 function getDraftState() {
 
     return {
-
         currentRound,
-
         roster,
-
-        draftBoard: getDraftBoard()
+        draftBoard: getDraftBoard(),
+        userDraftSlot
 
     };
 
