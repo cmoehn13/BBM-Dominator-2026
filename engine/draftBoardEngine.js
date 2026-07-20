@@ -21,6 +21,16 @@ function recordDraftPick(player, team, round, overallPick) {
 
 }
 
+function isPlayerDrafted(playerName) {
+
+    return draftBoard.some(
+        pick => pick.player.name === playerName
+    );
+
+}
+
+
+
 function getDraftBoard() {
 
     return draftBoard;
@@ -43,3 +53,4 @@ window.recordDraftPick = recordDraftPick;
 window.getDraftBoard = getDraftBoard;
 window.clearDraftBoard = clearDraftBoard;
 window.getOverallPick = getOverallPick;
+window.isPlayerDrafted = isPlayerDrafted;
