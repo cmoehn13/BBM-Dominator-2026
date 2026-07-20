@@ -193,6 +193,7 @@ function calculateDraftRecommendationScore(
 // =============================================
 // Global exports
 // =============================================
+window.draftPlayer = draftPlayer;
 
 window.calculateRosterNeeds =
     calculateRosterNeeds;
