@@ -83,29 +83,6 @@ render();
 
 
 
-// Draft a player
-
-function draftPlayer(name) {
-
-
-const player =
-players.find(
-p => p.name === name
-);
-
-
-if (!player) return;
-
-
-roster.push(player);
-
-
-saveRoster();
-
-
-render();
-
-}
 
 
 function removePlayer(name) {
