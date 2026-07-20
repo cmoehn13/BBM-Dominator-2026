@@ -564,7 +564,7 @@ document.getElementById("previousRoundBtn")
 document.getElementById("nextRoundBtn")
     ?.addEventListener("click", nextRound);
 
-window.draftPlayer = draftPlayer;
+
 window.removePlayer = removePlayer;
 window.nextRound = nextRound;
 window.previousRound = previousRound;
