@@ -46,6 +46,37 @@ function calculateRosterNeeds(roster = []) {
 
 }
 
+
+// Draft a player
+
+function draftPlayer(name) {
+
+
+const player =
+players.find(
+p => p.name === name
+);
+
+
+if (!player) return;
+
+
+roster.push(player);
+
+recordDraftPick(
+    player,
+    userDraftSlot,
+    currentRound,
+    getOverallPick()
+);
+
+saveRoster();
+
+
+render();
+
+}
+
 function detectDraftStrategy(roster = []) {
 
     const counts =
