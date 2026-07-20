@@ -516,6 +516,9 @@ function renderDraftIntelligence(){
     const panel =
         document.getElementById("draftIntelligence");
 
+    const draftBoard = getDraftBoard();
+    const draftedCount = draftBoard.length;
+
     if(!panel) return;
 
     panel.innerHTML = `
