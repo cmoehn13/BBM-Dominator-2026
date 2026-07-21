@@ -80,24 +80,17 @@ function removePlayer(name) {
 
 
 function draftPlayerForTeam(name, team) {
-
     const player = players.find(
         p => p.name === name
     );
 
     if (!player) return;
+    processDraftPick(player, team);
+    render();
+}
 
-    // Add player to the correct team's roster
+function processDraftPick(player, team) {
     addPlayerToTeam(player, team);
-
-    // If it's our team, keep the legacy roster array synchronized
-    if (team === userDraftSlot) {
-
-        roster = getTeamRoster(userDraftSlot);
-
-        saveRoster();
-
-    }
 
     recordDraftPick(
         player,
@@ -106,8 +99,10 @@ function draftPlayerForTeam(name, team) {
         getOverallPick()
     );
 
-    render();
-
+    if (team === userDraftSlot) {
+        roster = getTeamRoster(userDraftSlot);
+        saveRoster();
+    }
 }
 
 function detectDraftStrategy(roster = []) {
