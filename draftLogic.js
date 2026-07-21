@@ -71,6 +71,13 @@ function draftPlayer(name) {
     draftPlayerForTeam(name,userDraftSlot);
 }
 
+function removePlayer(name) {
+    roster = roster.filter(
+    player => player.name !== name);
+    saveRoster();
+    render();
+}
+
 
 function draftPlayerForTeam(name, team) {
 
@@ -205,6 +212,7 @@ function calculateDraftRecommendationScore(
 // Global exports
 // =============================================
 window.draftPlayer = draftPlayer;
+window.removePlayer = removePlayer;
 
 window.calculateRosterNeeds =
     calculateRosterNeeds;
