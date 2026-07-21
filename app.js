@@ -533,6 +533,8 @@ function renderDraftStatus() {
     const panel =
         document.getElementById("draftStatus");
 
+    const lastPick = getLastPick();
+
     if (!panel) return;
     panel.innerHTML = `
         <b>Round</b>
@@ -546,6 +548,15 @@ function renderDraftStatus() {
         <b>On the Clock</b>
         <br>
         Team ${state.currentTeam}
+        <br>
+        <b>Last Pick</b>
+        <br>${lastPick ? lastPick.player.name : "None"}
+        <br>
+        <b>Your Next Pick</b>
+        <br>${getNextUserPick()}
+        <br>
+        <b>Picks Away</b>
+        <br>${getPicksUntilUser()}
     `;
 }
 
