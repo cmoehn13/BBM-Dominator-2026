@@ -39,6 +39,21 @@ function calculateTeamForPick(overallPick) {
     return 13 - pickInRound;
 }
 
+function advanceDraft() {
+
+    draftState.overallPick++;
+
+    draftState.currentRound =
+        Math.ceil(draftState.overallPick / 12);
+
+    draftState.currentTeam =
+        calculateTeamForPick(
+            draftState.overallPick
+        );
+
+}
+
+window.advanceDraft = advanceDraft;
 window.calculateTeamForPick = calculateTeamForPick;
 window.getDraftState = getDraftState;
 window.setUserDraftSlot = setUserDraftSlot;
