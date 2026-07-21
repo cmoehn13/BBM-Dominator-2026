@@ -50,9 +50,43 @@ function advanceDraft() {
         calculateTeamForPick(
             draftState.overallPick
         );
-
 }
 
+function getNextUserPick() {
+    const state = getDraftState();
+
+    for (
+
+        let pick = state.overallPick;
+
+        pick <= 240;
+
+        pick++
+
+    ) {
+        if (
+
+            calculateTeamForPick(pick) ===
+            state.userDraftSlot
+
+        ) {
+
+            return pick;
+        }
+    }
+    return null;
+}
+
+function getPicksUntilUser() {
+    return (
+        getNextUserPick() -
+        getOverallPick()
+    );
+}
+
+
+window.getPicksUntilUser = getPicksUntilUser;
+window.getNextUserPick = getNextUserPick;
 window.advanceDraft = advanceDraft;
 window.calculateTeamForPick = calculateTeamForPick;
 window.getDraftState = getDraftState;
