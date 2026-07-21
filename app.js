@@ -37,7 +37,7 @@ let userDraftSlot = 1;
 function getDraftState() {
 
     return {
-        currentRound(),
+        currentRound,
         roster,
         draftBoard: getDraftBoard(),
         userDraftSlot
@@ -459,42 +459,28 @@ render();
 }
 
 function previousRound(){
-
 if(currentRound > 1){
-
-currentRound--;
-
+    currentRound--;
 }
 
 
 const roundDisplay =
 document.getElementById("currentRound");
 
-
 if(roundDisplay){
-
-roundDisplay.innerHTML =
-currentRound;
-
+    roundDisplay.innerHTML =currentRound;
 }
-
-
 render();
-
 }
 
 
 function renderDraftIntelligence(){
-
     const info =
         calculateRosterNeeds(roster);
-
     const strategy =
         detectDraftStrategy(roster);
-
     const panel =
         document.getElementById("draftIntelligence");
-
     const draftBoard = getDraftBoard();
     const draftedCount = draftBoard.length;
 
@@ -563,17 +549,11 @@ function renderDraftStatus() {
 // Refresh screen
 
 function render(){
-
 renderRoster();
-
 renderRecommendations();
-
 renderStackRecommendations();
-
 renderDraftStatus();
-
 renderDraftIntelligence();  
-
 }
 
 
