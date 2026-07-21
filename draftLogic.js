@@ -103,6 +103,8 @@ function processDraftPick(player, team) {
         roster = getTeamRoster(userDraftSlot);
         saveRoster();
     }
+
+    advanceDraft();
 }
 
 function detectDraftStrategy(roster = []) {
