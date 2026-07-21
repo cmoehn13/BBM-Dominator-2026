@@ -53,19 +53,14 @@ function advanceDraft() {
 }
 
 function getNextUserPick() {
-    const state = getDraftState();
+    const state = getLiveDraftState();
 
     for (
-
         let pick = state.overallPick;
-
         pick <= 240;
-
         pick++
-
     ) {
         if (
-
             calculateTeamForPick(pick) ===
             state.userDraftSlot
 
