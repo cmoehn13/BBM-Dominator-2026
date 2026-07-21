@@ -529,7 +529,7 @@ function renderDraftIntelligence(){
 }
 
 function renderDraftStatus() {
-    const state = getDraftState();
+    const state = getLiveDraftState();
     const panel =
         document.getElementById("draftStatus");
 
