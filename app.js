@@ -85,27 +85,6 @@ render();
 
 
 
-function removePlayer(name) {
-
-
-roster = roster.filter(
-
-player =>
-
-player.name !== name
-
-);
-
-
-saveRoster();
-
-
-render();
-
-
-}
-
-
 // Save roster locally
 
 function saveRoster(){
@@ -570,7 +549,6 @@ document.getElementById("nextRoundBtn")
     ?.addEventListener("click", nextRound);
 
 
-window.removePlayer = removePlayer;
 window.nextRound = nextRound;
 window.previousRound = previousRound;
 
