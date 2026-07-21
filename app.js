@@ -37,10 +37,10 @@ let userDraftSlot = 1;
 function getDraftState() {
 
     return {
-        getCurrentRound(),
+        currentRound(),
         roster,
         draftBoard: getDraftBoard(),
-        getDraftState().userDraftSlot
+        userDraftSlot
 
     };
 
