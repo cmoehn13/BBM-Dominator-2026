@@ -528,6 +528,27 @@ function renderDraftIntelligence(){
 
 }
 
+function renderDraftStatus() {
+    const state = getDraftState();
+    const panel =
+        document.getElementById("draftStatus");
+
+    if (!panel) return;
+    panel.innerHTML = `
+        <b>Round</b>
+        <br>
+        ${state.currentRound}
+        <hr>
+        <b>Overall Pick</b>
+        <br>
+        ${state.overallPick}
+        <hr>
+        <b>On the Clock</b>
+        <br>
+        Team ${state.currentTeam}
+    `;
+}
+
 // Refresh screen
 
 function render(){
@@ -538,9 +559,12 @@ renderRecommendations();
 
 renderStackRecommendations();
 
+renderDraftStatus();
+
 renderDraftIntelligence();  
 
 }
+
 
 document.getElementById("previousRoundBtn")
     ?.addEventListener("click", previousRound);
@@ -548,7 +572,7 @@ document.getElementById("previousRoundBtn")
 document.getElementById("nextRoundBtn")
     ?.addEventListener("click", nextRound);
 
-
+window.renderDraftStatus = renderDraftStatus;
 window.nextRound = nextRound;
 window.previousRound = previousRound;
 
