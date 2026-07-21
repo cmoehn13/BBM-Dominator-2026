@@ -71,15 +71,25 @@ function draftPlayer(name) {
     draftPlayerForTeam(name,userDraftSlot);
 }
 
+
 function draftPlayerForTeam(name, team) {
-    const player = players.find(p => p.name === name);
+
+    const player = players.find(
+        p => p.name === name
+    );
 
     if (!player) return;
 
-    // Only add to roster if it's your team
+    // Add player to the correct team's roster
+    addPlayerToTeam(player, team);
+
+    // If it's our team, keep the legacy roster array synchronized
     if (team === userDraftSlot) {
-        roster.push(player);
+
+        roster = getTeamRoster(userDraftSlot);
+
         saveRoster();
+
     }
 
     recordDraftPick(
@@ -90,6 +100,7 @@ function draftPlayerForTeam(name, team) {
     );
 
     render();
+
 }
 
 function detectDraftStrategy(roster = []) {
