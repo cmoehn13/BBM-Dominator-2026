@@ -10,7 +10,7 @@ let draftState = {
     userDraftSlot: 1
 };
 
-function getDraftState() {
+function getLiveDraftState() {
     return draftState;
 }
 
@@ -84,7 +84,7 @@ function getPicksUntilUser() {
     );
 }
 
-
+window.getLiveDraftState = getLiveDraftState;
 window.getPicksUntilUser = getPicksUntilUser;
 window.getNextUserPick = getNextUserPick;
 window.advanceDraft = advanceDraft;
