@@ -84,7 +84,7 @@ window.getPicksUntilUser = getPicksUntilUser;
 window.getNextUserPick = getNextUserPick;
 window.advanceDraft = advanceDraft;
 window.calculateTeamForPick = calculateTeamForPick;
-window.getDraftState = getDraftState;
+
 window.setUserDraftSlot = setUserDraftSlot;
 window.getCurrentRound = getCurrentRound;
 window.getCurrentTeam = getCurrentTeam;
